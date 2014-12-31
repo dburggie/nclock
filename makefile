@@ -15,21 +15,21 @@ install: all
 	cp ${EXE} ${INSTALLDIR}
 
 clean:
-	rm ${OBJ}
+	rm *.o
 	rm ${EXE}
 
-nclock: ${OBJ} clock.h
+nclock: ${OBJ} nclock.h
 	${CC} -o nclock ${OBJ} ${LIB}
 
-nclock_getTime.o: getTime.c clock.h
+nclock_getTime.o: nclock_getTime.c nclock.h
 	${CC} -c nclock_getTime.c
 
-nclock_characters.o: characters.c clock.h
+nclock_characters.o: nclock_characters.c nclock.h
 	${CC} -c nclock_characters.c
 
-nclock_display.o: display.c clock.h
+nclock_display.o: nclock_display.c nclock.h
 	${CC} -c nclock_display.c ${LIB}
 
-nclock_main.o: main.c clock.h
+nclock_main.o: nclock_main.c nclock.h
 	${CC} -c nclock_main.c ${LIB}
 

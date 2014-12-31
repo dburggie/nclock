@@ -1,4 +1,4 @@
-#include <clock.h>
+#include <nclock.h>
 #include <time.h>
 
 MyTime nclock_getTime()

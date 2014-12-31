@@ -1,4 +1,4 @@
-#include <clock.h>
+#include <nclock.h>
 #include <ncurses.h>
 
 static void printnum(WINDOW * win, int offset, int num);
