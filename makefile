@@ -1,6 +1,8 @@
 
 INSTALLDIR = ~/bin
 
+
+
 ARGS = -I. -Wall -D_DEBUG
 CC = gcc ${ARGS}
 
@@ -12,6 +14,7 @@ EXE = nclock
 all: ${EXE}
 
 install: all
+	mkdir -p ${INSTALLDIR}
 	cp ${EXE} ${INSTALLDIR}
 
 clean:

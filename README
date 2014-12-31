@@ -1,0 +1,8 @@
+nclock is a small program that turns your terminal into a digital style clock.
+Use of the included makefile is pretty easy; `make all` will make the 'nclock'
+executable in the working directory and `make install` will copy the
+executable to the directory contained by the 'INSTALLDIR' variable at the top
+of the makefile. By default, nclock installs itself to '~/bin'.
+
+nclock was written by Duncan Burggraf on 12/30/2014.
+
