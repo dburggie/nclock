@@ -16,7 +16,7 @@ struct MyTime {
 
 MyTime nclock_getTime();
 
-void nclock_display(WINDOW * win, MyTime t);
+int nclock_display(WINDOW * win, MyTime t); //returns 0 except on jan 1
 
 //12 sprites 5 tall, and 4 wide in this order "0123456789:/"
 extern const int nclock_colon_offset;

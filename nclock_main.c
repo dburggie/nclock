@@ -1,8 +1,10 @@
 #include <nclock.h>
 #include <ncurses.h>
+#include <stdlib.h>
 #include <time.h>
 
 static void window_clear(WINDOW * win, int width, int height);
+static void nclock_make_festive(WINDOW * win);
 
 int main(void)
 {
@@ -14,7 +16,13 @@ int main(void)
 
     // setup color green on black
     start_color();
-    init_pair( 1, COLOR_GREEN, COLOR_BLACK );
+    init_pair(1, COLOR_GREEN, COLOR_BLACK );
+	init_pair(2, COLOR_RED, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(6, COLOR_CYAN, COLOR_BLACK);
+	init_pair(7, COLOR_WHITE, COLOR_BLACK);
     attrset( COLOR_PAIR(1) );
     
 
@@ -30,7 +38,7 @@ int main(void)
     {
         endwin();
         printw("Your terminal window is %ix%i.\n", colc, rowc);
-        printw("Increase your window size to at least 31x5 to view clock\n");
+        printw("Increase your window size to at least 31x11 to view clock\n");
         printw("Press any key to quit");
         getch();
         endwin();
@@ -49,7 +57,10 @@ int main(void)
         {
             //clear window, then display time
             window_clear(win,width,height);
-            nclock_display(win, nclock_getTime());
+            if (nclock_display(win, nclock_getTime())) {
+				nclock_make_festive(win);
+			}
+			wrefresh(win);
             refresh();
             epochtime = time(NULL);
         }
@@ -69,4 +80,19 @@ static void window_clear(WINDOW * win, int width, int height)
     for (y = 0; y < height; y++)
         for (x = 0; x < width; x++)
             mvwaddch(win,y,x,' ');
+}
+
+
+static int nclock_random_seed = 1;
+
+static void nclock_make_festive(WINDOW * win)
+{
+	if (nclock_random_seed)
+	{
+		srand(time(NULL));
+		nclock_random_seed = 0;
+	}
+
+	int color = 1 + (rand() % 7);
+	wattrset(win, COLOR_PAIR(color));
 }

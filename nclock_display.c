@@ -23,7 +23,7 @@ static void nclock_printcolon(WINDOW * win, int y0, int x0);
 static void nclock_printslash(WINDOW * win, int y0, int x0);
 static void nclock_printc(WINDOW * win, int y0, int x0, int c);
 
-void nclock_display(WINDOW * win, MyTime t)
+int nclock_display(WINDOW * win, MyTime t)
 {
 	//month
 	nclock_printnum(win, 0, 0, t.month);
@@ -47,7 +47,9 @@ void nclock_display(WINDOW * win, MyTime t)
     //seconds
     nclock_printnum(win, 6,24, t.sec);
 
-    wrefresh(win);
+    if ((t.day + t.month) == 1) return 1; //return 1 on january first
+	//if (t.day == 30 && t.month == 12) return 1;
+	return 0;
 }
 
 static void nclock_printnum(WINDOW * win, int y0, int x0, int num)
