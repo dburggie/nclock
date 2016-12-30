@@ -18,60 +18,60 @@
  * 10 "### ### ::: ### ### ::: ### ###"
  */
 
-static void printnum(WINDOW * win, int y0, int x0, int num);
-static void printcolon(WINDOW * win, int y0, int x0);
-static void printslash(WINDOW * win, int y0, int x0);
-static void printc(WINDOW * win, int y0, int x0, int c)
+static void nclock_printnum(WINDOW * win, int y0, int x0, int num);
+static void nclock_printcolon(WINDOW * win, int y0, int x0);
+static void nclock_printslash(WINDOW * win, int y0, int x0);
+static void nclock_printc(WINDOW * win, int y0, int x0, int c);
 
 void nclock_display(WINDOW * win, MyTime t)
 {
 	//month
-	printnum(win, 0, 0, t.month);
-	printslash(win, 0, 8);
+	nclock_printnum(win, 0, 0, t.month);
+	nclock_printslash(win, 0, 8);
 
 	//day
-	printnum(win, 0, 12, t.day);
-	printslash(win, 0, 20);
+	nclock_printnum(win, 0, 12, t.day);
+	nclock_printslash(win, 0, 20);
 
 	//year
-	printnum(win, 0, 24, t.year);
+	nclock_printnum(win, 0, 24, t.year);
 	
     //hours
-    printnum(win,0,t.hr);
-    printcolon(win,6, 8);
+	nclock_printnum(win, 6, 0,t.hr);
+    nclock_printcolon(win, 6, 8);
 
     //minutes
-    printnum(win, 6, 12,t.min);
-    printcolon(win, 6, 20);
+    nclock_printnum(win, 6, 12,t.min);
+    nclock_printcolon(win, 6, 20);
 
     //seconds
-    printnum(win,24,t.sec);
+    nclock_printnum(win, 6,24,t.sec);
 
     wrefresh(win);
 }
 
-static void printnum(WINDOW * win, int y0, int x0, int num)
+static void nclock_printnum(WINDOW * win, int y0, int x0, int num)
 {
-	printc(win, y0, x0,   num / 10);
-	printc(win, y0, x0+4, num % 10);
+	nclock_printc(win, y0, x0,   num / 10);
+	nclock_printc(win, y0, x0+4, num % 10);
 }
 
-static void printcolon(WINDOW * win, int y0, int x0)
+static void nclock_printcolon(WINDOW * win, int y0, int x0)
 {
-	printc(win,y0,x0,nclock_colon_offset);
+	nclock_printc(win,y0,x0,nclock_colon_offset);
 }
 
-static void printcolon(WINDOW * win, int y0, int x0)
+static void nclock_printslash(WINDOW * win, int y0, int x0)
 {
-	printc(win,y0,x0,nclock_slash_offset);
+	nclock_printc(win,y0,x0,nclock_slash_offset);
 }
 
 
 
-static void printc(WINDOW * win, int y0, int x0, int c)
+static void nclock_printc(WINDOW * win, int y0, int x0, int c)
 {
     int i; for (i = 0; i < 5; i++)
     {
-        mvwprintw(win, i, offset, nclock_characters[c][i]);
+        mvwprintw(win, y0 + i, x0, nclock_characters[c][i]);
     }
 }
