@@ -37,15 +37,15 @@ void nclock_display(WINDOW * win, MyTime t)
 	nclock_printnum(win, 0, 24, t.year);
 	
     //hours
-	nclock_printnum(win, 6, 0,t.hr);
+	nclock_printnum(win, 6, 0, t.hr);
     nclock_printcolon(win, 6, 8);
 
     //minutes
-    nclock_printnum(win, 6, 12,t.min);
+    nclock_printnum(win, 6, 12, t.min);
     nclock_printcolon(win, 6, 20);
 
     //seconds
-    nclock_printnum(win, 6,24,t.sec);
+    nclock_printnum(win, 6,24, t.sec);
 
     wrefresh(win);
 }

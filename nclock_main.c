@@ -18,7 +18,7 @@ int main(void)
     attrset( COLOR_PAIR(1) );
     
 
-    int rowc, colc, xmid, ymid, x0, y0, height = 5, width = 31;
+    int rowc, colc, xmid, ymid, x0, y0, height = 11, width = 31;
     getmaxyx(stdscr,rowc,colc);
     xmid = colc / 2;
     ymid = rowc / 2;
