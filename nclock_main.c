@@ -23,9 +23,9 @@ int main(void)
     xmid = colc / 2;
     ymid = rowc / 2;
 
-    // window dimensions are 31x5 so x0 = xmid - 15, y0 = wmid - 2
+    // window dimensions are 31x11 so x0 = xmid - 15, y0 = wmid - 5
     x0 = xmid - 15;
-    y0 = ymid - 2;
+    y0 = ymid - 5;
     if (x0 < 0 || y0 < 0)
     {
         endwin();

@@ -1,4 +1,7 @@
 
+const int nclock_colon_offset = 10;
+const int nclock_slash_offset = 11;
+
 const char nclock_characters[11][5][4] = 
 {
     {
@@ -87,5 +90,14 @@ const char nclock_characters[11][5][4] =
         "   ",
         " # ",
         "   "
-    }
+    },
+
+	{
+		"   ",
+		"  /",
+		" / ",
+		"/  ",
+		"   "
+	}
 };
+
