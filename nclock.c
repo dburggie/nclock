@@ -137,7 +137,7 @@ int nclock_display(WINDOW * win, MyTime t)
 	//seconds
 	nclock_printnum(win, 6,24, t.sec);
 
-	if ((t.day + t.month) == 1) return 1; //return 1 on january first
+	if (t.month == 1 && t.day == 1) return 1; //return 1 on january first
 	//if (t.day == 30 && t.month == 12) return 1;
 	return 0;
 }
@@ -153,6 +153,7 @@ static void nclock_window_clear(WINDOW * win, int width, int height)
 static int nclock_random_unseeded = 1;
 static void nclock_make_festive(WINDOW * win)
 {
+	static int previous = 1;
 	if (has_colors())
 	{
 		if (nclock_random_unseeded)
@@ -161,7 +162,9 @@ static void nclock_make_festive(WINDOW * win)
 			nclock_random_unseeded = 0;
 		}
 
-		int color = 1 + (rand() % 7);
+		int color = 1 + (rand() % 6);
+		if (previous <= color) color += 1;
+		previous = color;
 		wattrset(win, COLOR_PAIR(color));
 	}
 }
